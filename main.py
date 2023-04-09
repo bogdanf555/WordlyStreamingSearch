@@ -31,7 +31,7 @@ def write_json(object: dict, filename):
 
 def fetch_id_from_us(title: str):
     us_watcher = JustWatch(country='US')
-    return us_watcher.search_title_id(title)[title]
+    return us_watcher.search_for_item(title)['items'][0]['id']
 
 def search_in_countries(title, id):
 
@@ -70,13 +70,11 @@ def search_in_countries(title, id):
         available_on = set()
         for offer in offers:
             available_on.add(providers_fullname[offer['package_short_name']])
+        available_on = list(available_on) if len(available_on) > 1 else next(iter(available_on))
 
         # register this result to final results
-        try:
-            result = {'country': pycountry.countries.get(alpha_2=country).name, 'available_on': available_on}
-        except Exception:
-            print(country)
-        
+        result = {'country': pycountry.countries.get(alpha_2=country).name, 'available_on': available_on}
+    
         if country in preffered_countries:
             final_results['preffered'].append(result)
         else:
