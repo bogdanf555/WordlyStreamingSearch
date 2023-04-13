@@ -1,6 +1,6 @@
 import sys
 import json
-from os import path
+from os import path, makedirs
 
 from justwatch import JustWatch
 import pycountry
@@ -80,8 +80,11 @@ def search_in_countries(title, id):
             final_results['preffered'].append(result)
         else:
             final_results['others'].append(result)
-        
-    write_json(final_results, path.join('results', title.replace(" ", '_') + '.json'))
+    
+    if not path.isdir('results'):
+        makedirs('results')
+
+    write_json(final_results, path.join('results', title.replace(" ", '_').replace(":", "") + '.json'))
 
 def main():
     title = sys.argv[1]
