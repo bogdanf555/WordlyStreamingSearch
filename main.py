@@ -1,5 +1,6 @@
 import sys
 import json
+from os import path
 
 from justwatch import JustWatch
 import pycountry
@@ -13,7 +14,7 @@ providers_fullname = {
     "prv": "Prime Video",
     "mbi": "Mubi"
 }
-preffered_countries = ['RO', 'US']
+preffered_countries = ['RO', 'US', 'GB']
 countries = ['AL', 'AG', 'AR', 'AU', 'AT', 'BS', 'BB', 'BE', 'BO', 'BA', 'BR', 'BG', 'CA', 
              'CV', 'CL', 'CO', 'CR', 'HR', 'CZ', 'DK', 'DO', 'EC', 'EG', 'SV', 'EE', 'FJ', 
              'FI', 'FR', 'GF', 'DE', 'GR', 'GT', 'HN', 'HK', 'HU', 'IS', 'IN', 'ID', 'IE', 
@@ -80,7 +81,7 @@ def search_in_countries(title, id):
         else:
             final_results['others'].append(result)
         
-    write_json(final_results, 'results.json')
+    write_json(final_results, path.join('results', title.replace(" ", '_') + '.json'))
 
 def main():
     title = sys.argv[1]
