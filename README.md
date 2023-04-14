@@ -20,9 +20,11 @@ The title should ideally be exactly as it appears on the JustWatch website when 
 Example ---  the movie TÁR has this special unicode in the middle that should appear in the search.<br>
 Use quotes for more than 1 word titles.
 <br><br>
-Results will be visible at the end in this file:
+Results will be visible at the end in a json file named after the title of the movie, inside a results directory:
+
+Example
 ```
-results.json
+results/2001_A_Space_Odyssey.json
 ```
 
 ## Enjoy!
